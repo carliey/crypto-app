@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const headers = {
-  "X-RapidAPI-Key": "a95a6dd10amsh040fd137b24aa6cp1055ecjsn290edf210c18",
+  "X-RapidAPI-Key": process.env.REACT_APP_CRYPTO_API_KEY,
   "X-RapidAPI-Host": "coinranking1.p.rapidapi.com",
 };
 
@@ -16,7 +16,7 @@ export const cryptoApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: "https://coinranking1.p.rapidapi.com" }),
   endpoints: (builder) => ({
     getCryptos: builder.query({
-      query: () => createRequest("/coins", headers, null),
+      query: (count) => createRequest(`/coins?limit=${count}`, headers, null),
     }),
   }),
 });

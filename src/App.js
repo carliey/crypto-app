@@ -10,37 +10,66 @@ import {
   News,
 } from "./components/index";
 
+const { Header, Content, Footer, Sider } = Layout;
+
 function App() {
   return (
-    <div className="App">
-      <div className="navbar">
-        <Navbar />
-      </div>
-      <div className="main">
-        <Layout>
-          <div className="routes">
-            <Routes>
-              <Route path="/" element={<Homepage />} />
-              <Route path="/cryptocurrencies" element={<Cryptocurrencies />} />
-              <Route path="/exchanges" element={<Exchanges />} />
-              <Route path="/news" element={<News />} />
-              <Route path="crypto/:coidId" element={<CryptoDetails />} />
-            </Routes>
+    <Layout hasSider>
+      <div className="App">
+        <Sider
+          style={{
+            overflow: "auto",
+            height: "100vh",
+            position: "fixed",
+            left: 0,
+            top: 0,
+            bottom: 0,
+          }}
+        >
+          <Navbar />
+        </Sider>
+        <div className="main">
+          <Layout
+            className="site-layout"
+            style={{
+              marginLeft: 200,
+            }}
+          >
+            <Content
+              style={{
+                margin: "24px 16px 0",
+                overflow: "initial",
+              }}
+            >
+              {" "}
+              <div className="routes">
+                <Routes>
+                  <Route path="/" element={<Homepage />} />
+                  <Route
+                    path="/cryptocurrencies"
+                    element={<Cryptocurrencies />}
+                  />
+                  <Route path="/exchanges" element={<Exchanges />} />
+                  <Route path="/news" element={<News />} />
+                  <Route path="crypto/:coidId" element={<CryptoDetails />} />
+                </Routes>
+              </div>
+            </Content>
+          </Layout>
+          <div className="footer">
+            <Typography.Title level={5} style={{ color: "white" }}>
+              CryptoApp <br />
+              All rights reserved
+            </Typography.Title>
+            <Space>
+              <Link to="/">Home</Link>
+              <Link to="/exchanges">Exchanges</Link>
+              <Link to="/news">News</Link>
+            </Space>
           </div>
-        </Layout>
-        <div className="footer">
-          <Typography.Title level={5} style={{ color: "white" }}>
-            CryptoApp <br />
-            All rights reserved
-          </Typography.Title>
-          <Space>
-            <Link to="/">Home</Link>
-            <Link to="/exchanges">Exchanges</Link>
-            <Link to="/news">News</Link>
-          </Space>
         </div>
       </div>
-    </div>
+    </Layout>
   );
 }
 
