@@ -19,7 +19,6 @@ function News({ simplified }) {
 
   if (isFetching) return "Loading...";
   if (!cryptoNews && !isFetching) return "Error, failed to load data";
-  console.log(cryptoNews);
 
   return (
     <Row gutter={[24, 24]}>
